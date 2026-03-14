@@ -59,20 +59,14 @@
     overflow: hidden;
     padding: 2rem;
   }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('images/IMG_1482.jpg');
-    background-size: cover;
-    background-position: center 30%;
-    opacity: 0.25;
-    filter: saturate(0.6);
-  }
-  .hero-bg::after {
+  .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,23,20,0.3) 0%, transparent 70%), linear-gradient(to bottom, rgba(26,23,20,0.4) 0%, rgba(26,23,20,0.1) 40%, rgba(26,23,20,0.6) 100%);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196,162,101,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 30% 70%, rgba(184,112,90,0.04) 0%, transparent 60%);
+    pointer-events: none;
   }
   .hero-content {
     position: relative;
@@ -85,7 +79,7 @@
     width: min(380px, 80vw);
     opacity: 0;
     animation: scaleIn 1.4s ease 0.3s forwards;
-    filter: drop-shadow(0 2px 40px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 0 60px rgba(196,162,101,0.08));
   }
   .hero-tagline {
     font-family: 'Cormorant Garamond', serif;
@@ -457,7 +451,6 @@
 <body>
 
 <section class="hero" id="top">
-  <div class="hero-bg"></div>
   <div class="hero-content">
     <img src="FF-logo-white.svg" alt="Flour & Ferment Atelier" class="hero-logo" />
     <p class="hero-tagline">Small-batch. All organic. Made to order.</p>
