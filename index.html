@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flour & Ferment Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lexend:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FDFBF7;
+    --dark: #1A1714;
+    --brown: #3D3029;
+    --terracotta: #B8705A;
+    --sage: #8A9A7B;
+    --gold: #C4A265;
+    --text: #2C2520;
+    --text-light: #6B5E54;
+    --divider: #D4C9BB;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--warm-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+  }
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes scaleIn { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
+  @keyframes drawLine { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @keyframes gentlePulse { 0%,100% { opacity:0.4; } 50% { opacity:0.7; } }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/IMG_1482.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.25;
+    filter: saturate(0.6);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,23,20,0.3) 0%, transparent 70%), linear-gradient(to bottom, rgba(26,23,20,0.4) 0%, rgba(26,23,20,0.1) 40%, rgba(26,23,20,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-logo {
+    width: min(380px, 80vw);
+    opacity: 0;
+    animation: scaleIn 1.4s ease 0.3s forwards;
+    filter: drop-shadow(0 2px 40px rgba(0,0,0,0.3));
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    margin-top: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 2rem;
+    transform-origin: center;
+    transform: scaleX(0);
+    animation: drawLine 0.8s ease 1.4s forwards;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    z-index: 1;
+    animation: gentlePulse 3s ease infinite 2s;
+  }
+  .hero-scroll span {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+  .hero-scroll svg { width: 16px; stroke: rgba(255,255,255,0.3); }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    color: var(--brown);
+    margin-bottom: 2rem;
+  }
+  .section-heading em { font-style: italic; color: var(--terracotta); }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy { background: var(--cream); }
+  .philosophy .section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .philosophy-text p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .philosophy-card {
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    padding: 3rem 2.5rem;
+    position: relative;
+  }
+  .philosophy-card blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--brown);
+  }
+  .philosophy-card .attribution {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .philosophy-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 2rem;
+    right: 2rem;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  /* ── GALLERY STRIP ── */
+  .gallery-strip {
+    background: var(--dark);
+    padding: 4px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .gallery-strip::-webkit-scrollbar { display: none; }
+  .gallery-track {
+    display: flex;
+    gap: 4px;
+    width: max-content;
+  }
+  .gallery-img {
+    flex: 0 0 auto;
+    height: 300px;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transition: filter 0.4s ease;
+    display: block;
+  }
+  .gallery-img:hover { filter: saturate(1); }
+
+  /* ── ORGANIC BANNER ── */
+  .organic-banner {
+    background: var(--sage);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+  }
+
+  /* ── OFFERINGS ── */
+  .offerings { background: var(--warm-white); }
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+    background: var(--divider);
+    border: 1px solid var(--divider);
+  }
+  .offering-item {
+    background: var(--warm-white);
+    overflow: hidden;
+    transition: background 0.4s ease;
+  }
+  .offering-item:hover { background: var(--cream); }
+  .offering-img-wrap { overflow: hidden; }
+  .offering-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9);
+    transition: all 0.6s ease;
+  }
+  .offering-item:hover .offering-img {
+    filter: saturate(1);
+    transform: scale(1.03);
+  }
+  .offering-body { padding: 1.75rem 2rem 2.25rem; }
+  .offering-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--divider);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    transition: color 0.4s ease;
+  }
+  .offering-item:hover .offering-number { color: var(--terracotta); }
+  .offering-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--brown);
+    margin-bottom: 0.5rem;
+  }
+  .offering-desc {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--text-light);
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--brown);
+    color: rgba(255,255,255,0.85);
+    position: relative;
+    overflow: hidden;
+  }
+  .process::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 80% 20%, rgba(196,162,101,0.06), transparent);
+    pointer-events: none;
+  }
+  .process .section-label { color: var(--gold); }
+  .process .section-heading { color: rgba(255,255,255,0.9); }
+  .process .section-heading em { color: var(--gold); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 3rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  .process-step { text-align: center; padding: 0 1.5rem; }
+  .step-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    background: var(--brown);
+    position: relative;
+    z-index: 1;
+  }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .contact .section-heading { margin-bottom: 1rem; }
+  .contact-subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--brown);
+    transition: color 0.3s ease;
+  }
+  .contact-link:hover { color: var(--terracotta); }
+  .contact-link-icon {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--divider);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: var(--warm-white);
+  }
+  .contact-link:hover .contact-link-icon {
+    border-color: var(--terracotta);
+    background: var(--terracotta);
+  }
+  .contact-link:hover .contact-link-icon svg { stroke: white; }
+  .contact-link-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--brown);
+    stroke-width: 1.5;
+    fill: none;
+    transition: stroke 0.3s ease;
+  }
+  .contact-link-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-logo { width: 200px; opacity: 0.4; margin-bottom: 1.5rem; }
+  .footer-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 auto 1.5rem;
+  }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .philosophy .section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .offerings-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .process-steps::before { display: none; }
+    .gallery-img { height: 240px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.5rem; }
+    .offerings-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-links { gap: 2rem; }
+    .gallery-img { height: 200px; }
+    .offering-img { height: 180px; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="FF-logo-white.svg" alt="Flour & Ferment Atelier" class="hero-logo" />
+    <p class="hero-tagline">Small-batch. All organic. Made to order.</p>
+    <div class="hero-divider"></div>
+  </div>
+  <a href="#philosophy" class="hero-scroll">
+    <span>Discover</span>
+    <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M8 3v10M4 9l4 4 4-4"/></svg>
+  </a>
+</section>
+
+<section class="philosophy" id="philosophy">
+  <div class="section-inner">
+    <div class="philosophy-text reveal">
+      <p class="section-label">The Atelier</p>
+      <h2 class="section-heading">Crafted in <em>small batches</em>,<br>with intention</h2>
+      <p>Flour & Ferment Atelier is a pre-order microbakery built on a simple belief: the best food starts with the best ingredients and the patience to let them do their work. Every item is made from scratch using all organic ingredients — no shortcuts, no fillers, no compromises.</p>
+      <p>From slow-fermented sourdough to hand-crafted brie and curated charcuterie, each offering is a small act of craft. We bake and create in limited quantities, so every order gets the attention it deserves.</p>
+    </div>
+    <div class="philosophy-visual reveal" style="transition-delay: 0.2s;">
+      <div class="philosophy-card">
+        <blockquote>"Good bread is the most fundamentally satisfying of all foods; and good bread with fresh butter, the greatest of feasts."</blockquote>
+        <p class="attribution">— James Beard</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gallery-strip">
+  <div class="gallery-track">
+    <img src="images/IMG_0857.jpg" alt="Scored sourdough boule" class="gallery-img">
+    <img src="images/IMG_1138.jpg" alt="Chocolate chip cookies" class="gallery-img">
+    <img src="images/IMG_1419.jpg" alt="Fresh bread cooling" class="gallery-img">
+    <img src="images/IMG_0971.jpg" alt="Stuffed sourdough" class="gallery-img">
+    <img src="images/IMG_2333.jpg" alt="Matcha strawberry cookies" class="gallery-img">
+    <img src="images/IMG_1587.jpg" alt="Packaged bread varieties" class="gallery-img">
+    <img src="images/IMG_2338.jpg" alt="Sourdough close-up" class="gallery-img">
+    <img src="images/IMG_1427.jpg" alt="Fresh baguettes" class="gallery-img">
+  </div>
+</div>
+
+<div class="organic-banner">
+  All organic ingredients &nbsp;·&nbsp; Small batch &nbsp;·&nbsp; Pre-order only &nbsp;·&nbsp; Austin, TX
+</div>
+
+<section class="offerings" id="offerings">
+  <div class="section-inner">
+    <p class="section-label reveal">What We Make</p>
+    <h2 class="section-heading reveal">From our <em>atelier</em> to your table</h2>
+    <div class="offerings-grid">
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_0857.jpg" alt="Sourdough bread" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">01</div>
+          <h3 class="offering-title">Sourdough Bread</h3>
+          <p class="offering-desc">Long-fermented, naturally leavened loaves in rotating varieties — plain, jalapeño cheddar, everything bagel, cinnamon sugar, and more.</p>
+        </div>
+      </div>
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_1138.jpg" alt="Cookies" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">02</div>
+          <h3 class="offering-title">Cookies</h3>
+          <p class="offering-desc">Small-batch cookies in seasonal flavors — from classic chocolate chip to matcha strawberry. Organic butter, real vanilla, crisp edges, soft centers.</p>
+        </div>
+      </div>
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_0965.jpg" alt="Custom brie" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">03</div>
+          <h3 class="offering-title">Custom Brie</h3>
+          <p class="offering-desc">Hand-crafted brie cheeses made to order. Creamy, bloomy-rind perfection — customized with herbs, honey, or seasonal infusions.</p>
+        </div>
+      </div>
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_0849.jpg" alt="Compound butter" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">04</div>
+          <h3 class="offering-title">Compound Butter</h3>
+          <p class="offering-desc">Organic butter blended with fresh herbs, roasted garlic, edible flowers, or seasonal flavors. The finishing touch for any table.</p>
+        </div>
+      </div>
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_2333.jpg" alt="Charcuterie cups" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">05</div>
+          <h3 class="offering-title">Charcuterie Cups</h3>
+          <p class="offering-desc">Individually portioned cups of curated meats, cheeses, fruits, and accompaniments. Perfect for gatherings, gifts, or solo indulgence.</p>
+        </div>
+      </div>
+      <div class="offering-item reveal">
+        <div class="offering-img-wrap"><img src="images/IMG_1409.jpg" alt="Charcuterie boards" class="offering-img"></div>
+        <div class="offering-body">
+          <div class="offering-number">06</div>
+          <h3 class="offering-title">Charcuterie Boards</h3>
+          <p class="offering-desc">Full-size boards with artisan meats, house-made brie and compound butter, seasonal fruits, and thoughtful pairings.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-inner">
+    <p class="section-label reveal">How It Works</p>
+    <h2 class="section-heading reveal">Made for you, <em>not</em> for a shelf</h2>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-icon">i</div>
+        <h3 class="step-title">Browse</h3>
+        <p class="step-desc">Check our weekly menu on Instagram for what's available this round</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay: 0.15s;">
+        <div class="step-icon">ii</div>
+        <h3 class="step-title">Pre-Order</h3>
+        <p class="step-desc">Reserve your items before the order window closes — small batches go fast</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay: 0.3s;">
+        <div class="step-icon">iii</div>
+        <h3 class="step-title">We Craft</h3>
+        <p class="step-desc">Everything made fresh to your order with all organic ingredients</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay: 0.45s;">
+        <div class="step-icon">iv</div>
+        <h3 class="step-title">Pick Up</h3>
+        <p class="step-desc">Collect your order at the scheduled pickup — still warm, always fresh</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">Get in Touch</p>
+    <h2 class="section-heading reveal">Let's break <em>bread</em></h2>
+    <p class="contact-subtitle reveal">Follow us on Instagram for weekly menus and pre-order windows. Have a question about custom orders? Drop us a line.</p>
+    <div class="contact-links reveal">
+      <a href="https://www.instagram.com/flourandfermentatelier/" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <span class="contact-link-text">Instagram</span>
+      </a>
+      <a href="mailto:hello@flourandfermentatelier.com" class="contact-link">
+        <div class="contact-link-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 4l10 8 10-8"/></svg></div>
+        <span class="contact-link-text">Email</span>
+      </a>
+      <a href="#" class="contact-link">
+        <div class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <span class="contact-link-text">Austin, TX</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="FF-logo-white.svg" alt="Flour & Ferment Atelier" class="footer-logo" />
+  <div class="footer-line"></div>
+  <p class="footer-copy">&copy; 2026 Flour & Ferment Atelier. All rights reserved.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
