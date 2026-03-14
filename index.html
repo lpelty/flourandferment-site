@@ -6,20 +6,20 @@
 <title>Flour & Ferment Atelier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lexend:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Lexend:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
   :root {
-    --cream: #F5F0E8;
-    --warm-white: #FDFBF7;
-    --dark: #1A1714;
-    --brown: #3D3029;
-    --terracotta: #B8705A;
-    --sage: #8A9A7B;
-    --gold: #C4A265;
-    --text: #2C2520;
-    --text-light: #6B5E54;
-    --divider: #D4C9BB;
+    --cream: #e9e2de;
+    --warm-white: #f4efec;
+    --dark: #1c120a;
+    --brown: #693f23;
+    --terracotta: #8b5535;
+    --sage: #7a8b6c;
+    --gold: #b8864a;
+    --text: #3a2415;
+    --text-light: #7d6050;
+    --divider: #d0c4ba;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -41,7 +41,7 @@
     background-repeat: repeat;
     background-size: 200px;
   }
-  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
+  h1, h2, h3, .serif { font-family: 'Bodoni Moda', serif; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
   @keyframes scaleIn { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
   @keyframes drawLine { from { transform:scaleX(0); } to { transform:scaleX(1); } }
@@ -64,8 +64,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(196,162,101,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 30% 70%, rgba(184,112,90,0.04) 0%, transparent 60%);
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,134,74,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 30% 70%, rgba(139,85,53,0.05) 0%, transparent 60%);
     pointer-events: none;
   }
   .hero-content {
@@ -79,10 +79,10 @@
     width: min(380px, 80vw);
     opacity: 0;
     animation: scaleIn 1.4s ease 0.3s forwards;
-    filter: drop-shadow(0 0 60px rgba(196,162,101,0.08));
+    filter: drop-shadow(0 0 60px rgba(184,134,74,0.08));
   }
   .hero-tagline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-weight: 300;
     font-style: italic;
     font-size: clamp(1rem, 2.5vw, 1.35rem);
@@ -135,7 +135,7 @@
     margin-bottom: 1.5rem;
   }
   .section-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-weight: 300;
     font-size: clamp(2rem, 5vw, 3.2rem);
     line-height: 1.15;
@@ -165,7 +165,7 @@
     position: relative;
   }
   .philosophy-card blockquote {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 1.6rem;
     font-weight: 400;
     font-style: italic;
@@ -257,7 +257,7 @@
   }
   .offering-body { padding: 1.75rem 2rem 2.25rem; }
   .offering-number {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 2rem;
     font-weight: 300;
     color: var(--divider);
@@ -267,7 +267,7 @@
   }
   .offering-item:hover .offering-number { color: var(--terracotta); }
   .offering-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 1.3rem;
     font-weight: 500;
     color: var(--brown);
@@ -290,7 +290,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 80% 20%, rgba(196,162,101,0.06), transparent);
+    background: radial-gradient(ellipse 70% 70% at 80% 20%, rgba(184,134,74,0.07), transparent);
     pointer-events: none;
   }
   .process .section-label { color: var(--gold); }
@@ -321,7 +321,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 1.1rem;
     font-style: italic;
     color: var(--gold);
@@ -330,7 +330,7 @@
     z-index: 1;
   }
   .step-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 1.2rem;
     font-weight: 500;
     color: rgba(255,255,255,0.9);
@@ -472,8 +472,8 @@
     </div>
     <div class="philosophy-visual reveal" style="transition-delay: 0.2s;">
       <div class="philosophy-card">
-        <blockquote>"Good bread is the most fundamentally satisfying of all foods; and good bread with fresh butter, the greatest of feasts."</blockquote>
-        <p class="attribution">— James Beard</p>
+        <blockquote>"I am the bread of life. Whoever comes to me will never go hungry, and whoever believes in me will never be thirsty."</blockquote>
+        <p class="attribution">— John 6:35</p>
       </div>
     </div>
   </div>
@@ -502,7 +502,7 @@
     <h2 class="section-heading reveal">From our <em>atelier</em> to your table</h2>
     <div class="offerings-grid">
       <div class="offering-item reveal">
-        <div class="offering-img-wrap"><img src="images/IMG_0857.jpg" alt="Sourdough bread" class="offering-img"></div>
+        <div class="offering-img-wrap"><img src="images/sourdough-branded.png" alt="Sourdough bread" class="offering-img"></div>
         <div class="offering-body">
           <div class="offering-number">01</div>
           <h3 class="offering-title">Sourdough Bread</h3>
@@ -534,7 +534,7 @@
         </div>
       </div>
       <div class="offering-item reveal">
-        <div class="offering-img-wrap"><img src="images/IMG_2333.jpg" alt="Charcuterie cups" class="offering-img"></div>
+        <div class="offering-img-wrap"><img src="images/IMG_0965.jpg" alt="Charcuterie cups" class="offering-img"></div>
         <div class="offering-body">
           <div class="offering-number">05</div>
           <h3 class="offering-title">Charcuterie Cups</h3>
